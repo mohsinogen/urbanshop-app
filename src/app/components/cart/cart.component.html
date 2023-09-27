@@ -1,0 +1,74 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="appbg" mode="md">
+    <ion-title>Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="appbg">
+  <section class="cart">
+    <ion-list lines="full" mode="ios">
+      <ion-item *ngFor="let product of products">
+        <div slot="start" class="product-meta">
+          <div class="cart-image">
+            <ion-button
+              class="delete-item"
+              size="small"
+              mode="ios"
+              fill="clear"
+              color="danger"
+              (click)="deleteFromCart(product?.slug)"
+            >
+              <ion-icon name="close-circle"></ion-icon>
+            </ion-button>
+            <img [src]="product?.featuredImage" />
+          </div>
+          <div class="product-info">
+            <ion-label class="ion-text-wrap title">{{
+              product?.title
+            }}</ion-label>
+            <ion-label class="price">{{
+              format(product?.price * product?.quantity)
+            }}</ion-label>
+          </div>
+        </div>
+
+        <div class="qty-cart-grid" slot="end">
+          <div class="col-inner">
+            <ion-buttons slot="start" mode="md">
+              <ion-button mode="ios" (click)="decreaseQty(product)">
+                <ion-icon name="remove-outline"></ion-icon>
+              </ion-button>
+              <div class="quantity">{{ product?.quantity }}</div>
+              <ion-button mode="ios" (click)="increaseQty(product)">
+                <ion-icon name="add-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+  </section>
+  <section class="cart-total" *ngIf="products.length > 0">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <span class="heading-small">Total Due </span>
+          <div class="price">
+            <ion-label>{{ format(total()) }}</ion-label>
+          </div>
+        </ion-col>
+        <ion-col size="6" class="check-col">
+          <ion-button
+            color="activechip"
+            size="small"
+            class="cart-btn"
+            mode="ios"
+            (click)="checkOut()"
+          >
+            <ion-label>Checkout</ion-label>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+</ion-content>

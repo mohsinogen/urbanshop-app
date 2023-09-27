@@ -1,0 +1,8 @@
+<div
+  [style.background-image]="'url(' + product?.image + ')'"
+  class="featuredImage"
+></div>
+<div class="product-info">
+  <ion-label class="title">{{ product?.name }}</ion-label>
+  <ion-label class="price">{{ format(product?.price) }}</ion-label>
+</div>

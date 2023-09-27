@@ -1,0 +1,43 @@
+<ion-tabs (ionTabsDidChange)="setCurrentTab($event)">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="store">
+      <ion-icon
+        [color]="currentTab == 'store' ? 'text' : 'gray'"
+        [name]="currentTab == 'store' ? 'home' : 'home-outline'"
+      ></ion-icon>
+      <ion-label [color]="currentTab == 'store' ? 'text' : 'gray'"
+        >Store</ion-label
+      >
+    </ion-tab-button>
+
+    <ion-tab-button tab="order">
+      <ion-icon
+        [color]="currentTab == 'order' ? 'text' : 'gray'"
+        [name]="currentTab == 'order' ? 'bag-check' : 'bag-check-outline'"
+      ></ion-icon>
+      <ion-label [color]="currentTab == 'order' ? 'text' : 'gray'"
+        >Orders</ion-label
+      >
+    </ion-tab-button>
+
+    <ion-tab-button tab="wishlist">
+      <ion-icon
+        [color]="currentTab == 'wishlist' ? 'text' : 'gray'"
+        [name]="currentTab == 'wishlist' ? 'heart' : 'heart-outline'"
+      ></ion-icon>
+      <ion-label [color]="currentTab == 'wishlist' ? 'text' : 'gray'"
+        >Wishlist</ion-label
+      >
+    </ion-tab-button>
+
+    <ion-tab-button tab="profile">
+      <ion-icon
+        [color]="currentTab == 'profile' ? 'text' : 'gray'"
+        [name]="currentTab == 'profile' ? 'person' : 'person-outline'"
+      ></ion-icon>
+      <ion-label [color]="currentTab == 'profile' ? 'text' : 'gray'"
+        >Profile</ion-label
+      >
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
