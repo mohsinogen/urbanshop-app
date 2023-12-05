@@ -15,90 +15,105 @@
         </ion-button>
       </ion-buttons>
     </div>
-    <swiper [config]="config" class="mobo-slider product-show">
-      <ng-template swiperSlide *ngFor="let slide of [].constructor(5)">
-        <!-- <img [src]="slide.image" /> -->
-        <img [src]="product?.image" alt="" />
+    <img [src]="product?.image" alt="" />
+  </section>
+
+  <ion-modal
+      #modal
+      [isOpen]="isModalOpen"
+      [initialBreakpoint]="0.4"
+      [breakpoints]="[0.4, 0.5, 0.6, 0.75]"
+      [backdropDismiss]="false"
+      [backdropBreakpoint]="0.5"
+      [animated]="true"
+    >
+      <ng-template>
+        <ion-content class="ion-padding">
+          <ion-text>wfiuw ufiuwehnf hfiuwefhuew fehfuehwfuheu hfiuwhfuhf. eufhuhf wfhuwhfu ehfuehf ufh fuhfuwh</ion-text>
+          
+        </ion-content>
       </ng-template>
-    </swiper>
-  </section>
+      </ion-modal>
 
-  <section class="meta ion-padding">
-    <ion-grid fixed>
-      <ion-row>
-        <ion-col size="8" class="title">
-          <ion-label>{{product?.name}}</ion-label>
-        </ion-col>
-        <ion-col size="4" class="price">
-          <ion-label>{{format(product?.price)}}</ion-label>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-    <ion-grid class="color-size-grid">
-      <ion-row>
-        <ion-col size="6">
-          <div class="col-inner">
-            <span class="heading-small">Color</span>
-            <ion-radio-group value="red" [(ngModel)]="color">
-              <ion-radio value="red" color="danger" mode="md"></ion-radio>
-              <ion-radio value="green" color="success" mode="md"></ion-radio>
-              <ion-radio value="yellow" color="warning" mode="md"></ion-radio>
-            </ion-radio-group>
-          </div>
-        </ion-col>
-        <ion-col size="6" class="col-right">
-          <div class="col-inner">
-            <span class="heading-small">Size</span>
-            <div>
+     <!--  <section class="meta ion-padding">
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="8" class="title">
+              <ion-label>{{product?.name}}</ion-label>
+            </ion-col>
+            <ion-col size="4" class="price">
+              <ion-label>{{format(product?.price)}}</ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    
+        <ion-grid class="color-size-grid">
+          <ion-row>
+            <ion-col size="6">
+              <div class="col-inner">
+                <span class="heading-small">Color</span>
+                <ion-radio-group value="red" [(ngModel)]="color">
+                  <ion-radio value="red" color="danger" mode="md"></ion-radio>
+                  <ion-radio value="green" color="success" mode="md"></ion-radio>
+                  <ion-radio value="yellow" color="warning" mode="md"></ion-radio>
+                </ion-radio-group>
+              </div>
+            </ion-col>
+            <ion-col size="6" class="col-right">
+              <div class="col-inner">
+                <span class="heading-small">Size</span>
+                <div>
+                  <ion-button
+                    *ngFor="let size of product?.sizes; let i = index"
+                    mode="ios"
+                    [color]="selectedSize == size ? 'activechip' : 'chip'"
+                    (click)="setSize(size)"
+                    size="small"
+                  >
+                    <ion-label>{{size}}</ion-label>
+                  </ion-button>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    
+        <ion-grid class="qty-cart-grid">
+          <ion-row>
+            <ion-col size="6">
+              <span class="heading-small">Quantity</span>
+              <div class="col-inner">
+                <ion-buttons slot="start" mode="md">
+                  <ion-button mode="ios" (click)="decreaseQty()">
+                    <ion-icon name="remove-outline"></ion-icon>
+                  </ion-button>
+                  <div class="quantity">{{quantity}}</div>
+                  <ion-button mode="ios" (click)="increaseQty()">
+                    <ion-icon name="add-outline"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </div>
+            </ion-col>
+            <ion-col size="6">
               <ion-button
-                *ngFor="let size of product?.sizes; let i = index"
-                mode="ios"
-                [color]="selectedSize == size ? 'activechip' : 'chip'"
-                (click)="setSize(size)"
+                color="activechip"
                 size="small"
+                class="cart-btn"
+                mode="ios"
+                (click)="addToCart()"
               >
-                <ion-label>{{size}}</ion-label>
+                <ion-label>Add To Cart</ion-label>
               </ion-button>
-            </div>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    
+        <div class="desc">
+          <span class="heading-small">Description</span>
+          <p>{{product?.description}}</p>
+        </div>
+      </section> -->
 
-    <ion-grid class="qty-cart-grid">
-      <ion-row>
-        <ion-col size="6">
-          <span class="heading-small">Quantity</span>
-          <div class="col-inner">
-            <ion-buttons slot="start" mode="md">
-              <ion-button mode="ios" (click)="decreaseQty()">
-                <ion-icon name="remove-outline"></ion-icon>
-              </ion-button>
-              <div class="quantity">{{quantity}}</div>
-              <ion-button mode="ios" (click)="increaseQty()">
-                <ion-icon name="add-outline"></ion-icon>
-              </ion-button>
-            </ion-buttons>
-          </div>
-        </ion-col>
-        <ion-col size="6">
-          <ion-button
-            color="activechip"
-            size="small"
-            class="cart-btn"
-            mode="ios"
-            (click)="addToCart()"
-          >
-            <ion-label>Add To Cart</ion-label>
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
 
-    <div class="desc">
-      <span class="heading-small">Description</span>
-      <p>{{product?.description}}</p>
-    </div>
-  </section>
+ 
 </ion-content>

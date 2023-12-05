@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { products } from '../../services/data/data';
 import { HelperService } from '../../services/shared/helper.service';
 import { StoreService } from '../../services/shared/store.service';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-product-show',
@@ -23,12 +24,14 @@ export class ProductShowPage implements OnInit {
   wishList: any;
 
   quantity = 1;
+  isModalOpen = true;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private helper: HelperService,
-    private store: StoreService
+    private store: StoreService,
+    private modalController: ModalController
   ) {
   }
 
@@ -40,11 +43,20 @@ export class ProductShowPage implements OnInit {
   getProduct() {
     const slug = this.route.snapshot.params['slug'];
     this.store.getProduct(slug).subscribe({
-      next:(res)=>{
-        this.product=res;
+      next: (res) => {
+        this.product = res;
       }
     })
   }
+
+  ionViewWillEnter() {
+    this.openModal();
+  }
+
+  ionViewWillLeave() {
+    
+this.closeModal()
+}
 
   setSize(size) {
     this.selectedSize = size;
@@ -96,5 +108,14 @@ export class ProductShowPage implements OnInit {
       currencySign: 'accounting',
       signDisplay: 'auto',
     }).format(value);
+  }
+
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.modalController.dismiss();
+    this.isModalOpen = false;
   }
 }
