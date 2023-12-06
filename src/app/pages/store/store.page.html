@@ -1,7 +1,6 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color="appbg" mode="md">
     <ion-title>URBANSHOP</ion-title>
-
     <ion-buttons slot="end" mode="ios">
       <ion-button slot="end" (click)="showCart()">
         <ion-icon name="bag-outline"></ion-icon>
@@ -12,18 +11,14 @@
 </ion-header>
 
 <ion-content color="appbg" class="ion-padding">
-  <ion-searchbar style="position: sticky;" class="ion-no-padding" animated="true" mode="ios"></ion-searchbar>
- <!--  <section>
-    <swiper
-      [config]="config"
-      (slideChange)="onSlideChange($event)"
-      class="mobo-slider"
-    >
-      <ng-template swiperSlide *ngFor="let slide of slides">
-        <img [src]="slide.image" />
-      </ng-template>
-    </swiper>
-  </section> -->
+ <ion-row class="ion-align-items-center ion-justify-content-between" style="height: 50px;border: 0.5px solid var(--ion-color-medium); border-radius: 1.2rem;">
+  <ion-col class="ion-no-padding flex-centered" size="2" style="font-size: 2rem;">
+    <ion-icon name="search"></ion-icon>
+  </ion-col>
+  <ion-col class="ion-no-padding" size="10">
+    <ion-input mode="ios" placeholder="Search product"></ion-input>
+  </ion-col>
+ </ion-row>
 
   <section>
     <div class="chips">
@@ -48,10 +43,7 @@
           size-lg="2"
           *ngFor="let product of productList"
         >
-          
-         
           <product-card [product]="product" (click)="goTo(product.id)"></product-card>
-
         </ion-col>
       </ion-row>
     </ion-grid>
